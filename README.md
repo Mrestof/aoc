@@ -11,4 +11,4 @@ In case you want to run some of the solutions by yourself:
 - You need to install all the dependency packages. You can find them in the
   `meta/python/requirements.txt` file.
 - You need to specify your key for the Python's `aocd` library,
-  for details check their [docs](https://github.com/wimglenn/advent-of-code-data).
+  for details check their [docs](https://github.com/wimglenn/advent-of-code-data#quickstart).
