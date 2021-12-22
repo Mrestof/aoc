@@ -15,7 +15,7 @@ def solve_b(data: list[str]) -> int:
 
 def run_on_test_data(variants: str) -> None:
     with open('test-input.txt', 'r') as data:
-        test_input_data = data.readlines()
+        test_input_data = data.read().splitlines()
 
     print(f'solving variants: {variants}')
     if 'a' in variants:
