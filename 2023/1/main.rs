@@ -8,15 +8,15 @@ use std::io::{BufRead, BufReader};
 fn get_num(line: String) -> u32 {
     let mut left_char = '0';
     let mut right_char = '0';
-    for char in line.chars() {
-        if char.is_digit(10) {
-            left_char = char;
+    for c in line.chars() {
+        if c.is_digit(10) {
+            left_char = c;
             break;
         }
     }
-    for char in line.chars().rev() {
-        if char.is_digit(10) {
-            right_char = char;
+    for c in line.chars().rev() {
+        if c.is_digit(10) {
+            right_char = c;
             break;
         }
     }
