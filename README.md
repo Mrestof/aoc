@@ -2,8 +2,7 @@
 
 ## Requirements
 
-> This repo may be multilingual in the future, but for now it's only `Python`,
-> so the instructions are only for it
+### Python
 
 In case you want to run some of the solutions by yourself:
 
@@ -12,3 +11,9 @@ In case you want to run some of the solutions by yourself:
   `meta/python/requirements.txt` file.
 - You need to specify your key for the Python's `aocd` library,
   for details check their [docs](https://github.com/wimglenn/advent-of-code-data#quickstart).
+
+
+### Rust
+
+- You must have `rustc` compiler.  
+    See [ArchLinux guide](https://wiki.archlinux.org/title/Rust)
