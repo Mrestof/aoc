@@ -1,4 +1,5 @@
-#!/usr/bin/python3.9
+#!/usr/bin/python3
+
 from typing import Final
 from os import environ
 from sys import stdout
