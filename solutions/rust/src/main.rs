@@ -27,15 +27,12 @@ fn get_input(year: u16, day: u8) -> IoResult<BufReader<File>> {
 }
 
 fn main() {
-    // let reader: BufReader<File> = get_input(2023, 1).expect("😭😭😭");
-    // let input: Vec<String> = reader.lines()
-    //     .map(|line| line.expect("Error reading line"))
-    //     .collect();
-    // let p1_answer = year2023::day1::part1(&input);
-    // println!("2023-1:1: {p1_answer}");
-    // let p2_answer = year2023::day1::part2(&input);
-    // println!("2023-1:2: {p2_answer}");
-    let s = "zcndrqjsfourthreethree11seven";
-    println!("{:?}", year2023::day1::get_num_improved(s.to_string()));
-    println!("line: {s}");
+    let reader: BufReader<File> = get_input(2023, 1).expect("😭😭😭");
+    let input: Vec<String> = reader.lines()
+        .map(|line| line.expect("Error reading line"))
+        .collect();
+    let p1_answer = year2023::day1::part1(&input);
+    println!("2023-1:1: {p1_answer}");
+    let p2_answer = year2023::day1::part2(&input);
+    println!("2023-1:2: {p2_answer}");
 }
