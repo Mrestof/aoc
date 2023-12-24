@@ -76,3 +76,7 @@ pub fn part2(input: &Vec<String>) -> u32 {
     }
     return sum;
 }
+
+pub fn both(input: &Vec<String>) -> (u32, u32) {
+    return (part1(input), part2(input));
+}
