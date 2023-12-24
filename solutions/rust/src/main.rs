@@ -1,6 +1,8 @@
 mod year2023 {
     pub mod day1;
+    pub mod day2;
 }
+mod consts;
 use std::env::current_dir;
 use std::path::{Path, PathBuf};
 use std::fs::File;
@@ -26,13 +28,20 @@ fn get_input(year: u16, day: u8) -> IoResult<BufReader<File>> {
     return Ok(input_reader);
 }
 
-fn main() {
-    let reader: BufReader<File> = get_input(2023, 1).expect("😭😭😭");
+
+fn solve_for_day(day: u8) {
+    let reader: BufReader<File> = get_input(2023, day).expect("😭😭😭");
     let input: Vec<String> = reader.lines()
         .map(|line| line.expect("Error reading line"))
         .collect();
-    let p1_answer = year2023::day1::part1(&input);
+    let solver = consts::SOLVER_FOR_DAY[day as usize - 1];
+    let (p1_answer, p2_answer) = solver(&input);
     println!("2023-1:1: {p1_answer}");
-    let p2_answer = year2023::day1::part2(&input);
     println!("2023-1:2: {p2_answer}");
+}
+
+fn main() {
+    for day in 1..=2 {
+        solve_for_day(day);
+    }
 }
