@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
 	"mrestof/aoc/year2024"
@@ -10,14 +9,14 @@ import (
 
 func main() {
   // TODO: move out to a separate input retreiver function
-  f, err := os.Open(
+  content, err := os.ReadFile(
     "/home/mrestof/docs/dev/study/practice/aoc/me/inputs/2024_1.txt",
   )
   if err != nil {
     log.Fatal(err)
   }
-  defer f.Close()
-  scanner := bufio.NewScanner(f)
-  answer := day1.SolvePart1(*scanner)
-  fmt.Println("Answer for year 2024 day 1:", answer)
+  answer1 := day1.SolvePart1(string(content))
+  answer2 := day1.SolvePart2(string(content))
+  fmt.Println("Answer for year 2024 day 1 part 1:", answer1)
+  fmt.Println("Answer for year 2024 day 1 part 2:", answer2)
 }
