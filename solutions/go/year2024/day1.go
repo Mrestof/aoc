@@ -3,13 +3,15 @@ package day1
 import (
 	"bufio"
 	"log"
+	"slices"
 	"strconv"
 	"strings"
 )
 
-const estimatedInputLength = 10_000
+const estimatedInputLength uint16 = 1 << 10
 
-func Solve1(input bufio.Scanner) uint32 {
+func SolvePart1(input bufio.Scanner) uint32 {
+  var totalDistance uint32 = 0
   leftLocs := make([]uint32, 0, estimatedInputLength)
   rightLocs := make([]uint32, 0, estimatedInputLength)
   for input.Scan() {
@@ -22,7 +24,18 @@ func Solve1(input bufio.Scanner) uint32 {
     leftLocs = append(leftLocs, uint32(left))
     rightLocs = append(rightLocs, uint32(right))
   }
-  // sort each loc list
-  // calculate distance for each loc pair
-  return 42
+  if len(leftLocs) != len(rightLocs) {
+    panic("mismatching length of location lists")
+  }
+  slices.Sort(leftLocs)
+  slices.Sort(rightLocs)
+  for i := 0; i < len(leftLocs); i++ {
+    var distance int16 = int16(leftLocs[i] - rightLocs[i])
+    if distance < 0 {
+      distance = -distance
+    }
+    println(leftLocs[i], rightLocs[i], distance)
+    totalDistance += uint32(distance)
+  }
+  return totalDistance
 }

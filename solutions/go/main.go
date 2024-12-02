@@ -18,6 +18,6 @@ func main() {
   }
   defer f.Close()
   scanner := bufio.NewScanner(f)
-  answer := day1.Solve1(*scanner)
+  answer := day1.SolvePart1(*scanner)
   fmt.Println("Answer for year 2024 day 1:", answer)
 }
