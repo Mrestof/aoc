@@ -1,4 +1,4 @@
-package day1
+package year2024
 
 import (
 	"bufio"
@@ -11,7 +11,7 @@ import (
 
 const estimatedInputLength uint16 = 1 << 10
 
-func SolvePart1(input string) uint32 {
+func SolveDay1Part1(input string) uint32 {
   var totalDistance uint32 = 0
   leftLocs := make([]uint32, 0, estimatedInputLength)
   rightLocs := make([]uint32, 0, estimatedInputLength)
@@ -44,7 +44,7 @@ func SolvePart1(input string) uint32 {
   return totalDistance
 }
 
-func SolvePart2(input string) uint32 {
+func SolveDay1Part2(input string) uint32 {
   var similarityScore uint32 = 0
   leftLocs := make([]uint32, 0, estimatedInputLength)
   rightLocs := make([]uint32, 0, estimatedInputLength)
