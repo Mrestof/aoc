@@ -1,8 +1,8 @@
-pub fn part1(input: &Vec<String>) -> u32 {
+pub fn part1(_input: &Vec<String>) -> u32 {
     return 0;
 }
 
-pub fn part2(input: &Vec<String>) -> u32 {
+pub fn part2(_input: &Vec<String>) -> u32 {
     return 0;
 }
 
