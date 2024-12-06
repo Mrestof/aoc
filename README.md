@@ -8,7 +8,7 @@ all for yearly Advent of Code.
 If you want to run some of the solutions by yourself,
 follow the appropriate section below.
 
-### Python
+### Python [3/25]
 
 1. Prepare requirements:
     - Have Python of version 3.10 or higher.
@@ -19,7 +19,7 @@ follow the appropriate section below.
 in `./solutions/python/`, it will not print anything but will automatically
 try to submit the calculated answers with your session key.
 
-### Rust
+### Rust [1/25]
 
 1. Have Rust with Cargo installed.
     > [ArchLinux guide](https://wiki.archlinux.org/title/Rust) for reference
@@ -29,7 +29,7 @@ try to submit the calculated answers with your session key.
     cargo run
     ```
 
-### Go
+### Go [1/25]
 
 1. Have Go compiler installed.
     > [ArchLinux guide](https://wiki.archlinux.org/title/Go) for reference
