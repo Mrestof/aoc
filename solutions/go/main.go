@@ -44,4 +44,14 @@ func runYear(year uint16) {
 
 func main() {
   runYear(2024)
+  //levels := []int{1, 2, 3, 4}
+  //fmt.Printf("levels %d\n", levels)
+  //fmt.Printf(":1 %d\n", levels[:1])
+  //fmt.Printf("2: %d\n", levels[2:])
+  //fmt.Printf(":2 %d\n", levels[:2])
+  //fmt.Printf("3: %d\n", levels[3:])
+  //fmt.Printf(":1+2: %d\n", append(levels[:1], levels[2:]...))
+  //fmt.Printf("levels %d\n", levels)
+  //fmt.Printf(":2+3: %d\n", append(levels[:2], levels[3:]...))
+  //fmt.Printf("levels %d\n", levels)
 }
