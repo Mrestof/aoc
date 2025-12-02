@@ -1,10 +1,12 @@
 #include <math.h>
 #include <string.h>
+#include <stdio.h>
+
 #include "myutils.h"
 
 bool is_prime(long num) {
   if (num < 2) return false;
-  long max_factor = sqrt(num);
+  double max_factor = sqrt(num);
   for (long a = 2; a <= max_factor; a++)
     if (num % a == 0) return false;
   return true;
@@ -38,4 +40,19 @@ int find_str(const char s[], char * const in[], const int in_len) {
       return i;
 
   return -1;
+}
+
+int readline(char s[], int lim) {
+  int c, i;
+
+  for (i=0; (c=getchar())!=EOF && c!='\n'; ++i)
+    if (i < lim-1)
+      s[i] = c;
+  if (c == '\n') {
+    s[i] = c;
+    ++i;
+  }
+  s[i] = '\0';
+
+  return i;
 }

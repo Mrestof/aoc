@@ -12,4 +12,6 @@ void reverse(char s[]);
 // not in the array
 int find_str(const char s[], char *const in[], const int in_len);
 
+int readline(char s[], int lim);
+
 #endif /* MYUTILS_H */
