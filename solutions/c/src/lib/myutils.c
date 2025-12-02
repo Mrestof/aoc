@@ -42,7 +42,7 @@ int find_str(const char s[], char * const in[], const int in_len) {
   return -1;
 }
 
-int readline(char s[], int lim) {
+int readline_from_stdin(char s[], int lim) {
   int c, i;
 
   for (i=0; (c=getchar())!=EOF && c!='\n'; ++i)
@@ -55,4 +55,35 @@ int readline(char s[], int lim) {
   s[i] = '\0';
 
   return i;
+}
+
+// read stdin until EOF, write it to `input`, replace every \n with \0, set
+// pointers in `lines` to point to strings in `input`, return the amount of
+// pointers to lines
+int readall(char *input, char *lines[], int lim, int line_lim) {
+  char line[line_lim];
+  int i = 0, nline = 0;
+  char *line_p;
+  int len = 0;
+  int total_len = 0;
+
+  while ((len = readline_from_stdin(line, line_lim)) > 0) {
+    total_len += len;
+    if (total_len > lim) {
+      puts("error: input lim exceeded");
+      return -1;
+    }
+    strcat(input, line);
+  }
+
+  for (i = nline = 0, line_p = &input[0]; input[i] != '\0'; i++) {
+    if (input[i] == '\n') {
+      input[i] = '\0';
+      lines[nline++] = line_p;
+      line_p = &input[i+1];
+    }
+  }
+  lines[nline++] = line_p;
+
+  return nline;
 }
