@@ -1,5 +1,5 @@
 CompileFlags:
   Compiler: gcc
-  Add: [
-    -xc,
-  ]
+  Add:
+    - "-xc"
+    - "-I../lib/"
