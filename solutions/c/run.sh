@@ -16,13 +16,20 @@ if [[ -z "$filename" ]]; then
   filename=$last_edited
 fi
 
-year_part=${filename#*/year} # strip everything through "year"
-year=${year_part%/*}        # keep up to the next slash
-day_part=${filename#*/day}   # take the filename "day1.c"
-day=${day_part%.*}          # drop the ".c" suffix
+if [[ "$filename" == *year* && "$filename" == *day* ]]; then
+  year_part=${filename#*/year} # strip everything through "year"
+  year=${year_part%/*}        # keep up to the next slash
+  day_part=${filename#*/day}   # take the filename "day1.c"
+  day=${day_part%.*}          # drop the ".c" suffix
 
-fin="../../inputs/${year}-${day}.txt"
-finex="../../inputs/${year}-${day}-ex.txt"
+  fin="../../inputs/${year}-${day}.txt"
+  finex="../../inputs/${year}-${day}-ex.txt"
+
+  bin_name="./.bin/${year}-${day}"
+else
+  fin="fileinput.txt"
+  bin_name="./.bin/${filename##*/}"
+fi
 
 find-up () {
   local path=$(pwd)
@@ -41,7 +48,7 @@ if [[ ! -f "$fin" ]]; then
   aocd "$year" "$day" > ../../inputs/${year}-${day}.txt
 fi
 
-if [[ -f "$finex" ]]; then
+if [[ ! -z "$finex" && -f "$finex" ]]; then
   if [[ ! $(command -v aocd) ]]; then
     venv_name="${1:-.venv}"
     closest_venv_loc=$(find-up $venv_name)
@@ -55,8 +62,6 @@ fi
 if [[ ! -d ".bin/lib" ]]; then
   mkdir -p ".bin/lib"
 fi
-
-bin_name="./.bin/${year}-${day}"
 
 run() {
   local fin=$1
@@ -91,5 +96,7 @@ ar rcs .bin/lib/libmyutils.a .bin/lib/myutils.o
 gcc -O0 -g $gcc_warnings $filename -o $bin_name -L.bin/lib -Isrc/lib -lmyutils -lm -lbsd
 set +e
 
-run $finex $FOUTEX
+if [[ ! -z "$finex" ]]; then
+  run $finex $FOUTEX
+fi
 run $fin $FOUT
