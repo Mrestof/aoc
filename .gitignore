@@ -1,0 +1,16 @@
+# python
+.venv/
+
+# rust
+/solutions/rust/target/
+/solutions/rust/Cargo.lock
+
+# c
+/solutions/c/src/TESTFIELD.c
+/solutions/c/notes
+/solutions/c/ref/
+
+/solutions/c/fileoutput.txt
+/solutions/c/.bin
+
+/solutions/c/.gdb_history
