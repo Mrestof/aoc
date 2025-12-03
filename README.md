@@ -19,6 +19,29 @@ follow the appropriate section below.
 in `./solutions/python/`, it will not print anything but will automatically
 try to submit the calculated answers with your session key.
 
+### C [2/25]
+
+1. Have the required tools installed
+    - aocd (advent-of-code-data 2.0.1)
+        - Have your session key set. For details check [their
+          docs](https://github.com/wimglenn/advent-of-code-data#quickstart).
+        - You either must have `aocd` in PATH, or it must be installed in the
+          `.venv`, that you can put somewhere in the project folder, above, or
+          at the same level as `run.sh`, so that it can automatically source
+          the venv and use the tool from it
+    - entr (to automatically recompile and run)
+    - ts (for timestamps)
+    - gcc (to compile)
+2. Run the solutions
+    - Run a single solution
+        - Execute `run.sh` script with no arguments to run the latest updated c
+          file in `src` dir.
+        - Execute `run.sh src/yearYYYY/dayD.c` script with a filiename passed
+          as the first argument to compile and run the specified file.
+    - Continuosly recompile and run on any changes to files
+        - Execute `concom.sh` to watch the source files for any changes, and on
+          each new write to a file, automatically execute `run.sh`
+
 ### Rust [1/25]
 
 1. Have Rust with Cargo installed.
