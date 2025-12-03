@@ -45,16 +45,24 @@ bool is_silly_p1(char num[18]) {
 }
 
 bool is_silly_p2(char num[18]) {
-  int len;
+  int len, subl, p;
+
   for (len = 0; num[len] != '\0'; len++);
-  if (len % 2 != 0)
-    return false;
 
-  for (int i = 0, j = len / 2; j < len; i++, j++)
-    if (num[i] != num[j])
-      return false;
+  for (subl = 1; subl <= len / 2; subl++) {
+    if (len % subl != 0)
+      continue;
+    for (p = 0; p < len / subl - 1; p++) {
+      for (int i = p * subl, j = (p+1) * subl; i < (p+1) * subl; i++, j++)
+        if (num[i] != num[j])
+          goto ls;
+    }
+    return true;
+ls:
+    ;
+  }
 
-  return true;
+  return false;
 }
 
 long long part(int p) {
