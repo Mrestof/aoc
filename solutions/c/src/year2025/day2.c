@@ -31,7 +31,7 @@ int get_range(unsigned int n, char from[18], char to[18]) {
   return 0;
 }
 
-bool is_silly(char num[18]) {
+bool is_silly_p1(char num[18]) {
   int len;
   for (len = 0; num[len] != '\0'; len++);
   if (len % 2 != 0)
@@ -44,7 +44,20 @@ bool is_silly(char num[18]) {
   return true;
 }
 
-long long part1() {
+bool is_silly_p2(char num[18]) {
+  int len;
+  for (len = 0; num[len] != '\0'; len++);
+  if (len % 2 != 0)
+    return false;
+
+  for (int i = 0, j = len / 2; j < len; i++, j++)
+    if (num[i] != num[j])
+      return false;
+
+  return true;
+}
+
+long long part(int p) {
   int i = 0;
   int rn = 0;
   char a[18] = {0}, b[18] = {0}, cur[18] = {0};
@@ -61,22 +74,21 @@ long long part1() {
     bi = atoll(b);
     for (long long n = ai; n <= bi; n++){
       sprintf(cur, "%lld", n);
-      if (is_silly(cur)) {
-        res += n;
-      }
+      if (p == 1)
+        if (is_silly_p1(cur))
+          res += n;
+      if (p == 2)
+        if (is_silly_p2(cur))
+          res += n;
     }
   }
 
   return res;
 }
 
-long long part2() {
-  return 0;
-}
-
 int main() {
   nlines = readall(input, lines, MAXINPUT, MAXLINE);
-  printf("part1: %lld\n", part1());
-  printf("part2: %lld\n", part2());
+  printf("part1: %lld\n", part(1));
+  printf("part2: %lld\n", part(2));
   return 0;
 }
