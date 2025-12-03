@@ -12,7 +12,7 @@ char input[MAXINPUT] = {0};
 char *lines[MAXLINES];
 int nlines = 0;
 
-int largest_joltage(char r[]) {
+int largest_joltage_p1(char r[]) {
   int i = 0;
   int maxi = 0;
   char jolts[2] = {0};
@@ -32,21 +32,37 @@ int largest_joltage(char r[]) {
   return atoi(jolts);
 }
 
-int part1() {
+int largest_joltage_p2(char r[]) {
+  int i = 0;
+  int maxi = 0;
+  char jolts[2] = {0};
+
+  for (i = 0; r[i+1] != '\0'; i++)
+    if (r[maxi] < r[i])
+      maxi = i;
+  jolts[0] = r[maxi];
+
+  maxi++;
+
+  for (i = maxi; r[i] != '\0'; i++)
+    if (r[maxi] < r[i])
+      maxi = i;
+  jolts[1] = r[maxi];
+
+  return atoi(jolts);
+}
+
+int shared(int lj(char [])) {
   int nl = 0;
   int sum = 0;
   for (nl = 0; nl < nlines; nl++)
-    sum += largest_joltage(lines[nl]);
+    sum += lj(lines[nl]);
   return sum;
-}
-
-int part2() {
-  return 0;
 }
 
 int main() {
   nlines = readall(input, lines, MAXINPUT, MAXLINE);
-  printf("part1: %d\n", part1());
-  printf("part2: %d\n", part2());
+  printf("part1: %d\n", shared(largest_joltage_p1));
+  printf("part2: %d\n", shared(largest_joltage_p2));
   return 0;
 }
