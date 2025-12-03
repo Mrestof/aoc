@@ -32,22 +32,22 @@ long long largest_joltage_p1(char r[]) {
   return atoll(jolts);
 }
 
+#define NBAT 12
+
 long long largest_joltage_p2(char r[]) {
+  int nb = 0;
   int i = 0;
   int maxi = 0;
-  char jolts[2] = {0};
+  char jolts[NBAT] = {0};
 
-  for (i = 0; r[i+1] != '\0'; i++)
-    if (r[maxi] < r[i])
-      maxi = i;
-  jolts[0] = r[maxi];
-
-  maxi++;
-
-  for (i = maxi; r[i] != '\0'; i++)
-    if (r[maxi] < r[i])
-      maxi = i;
-  jolts[1] = r[maxi];
+  maxi = 0;
+  for (nb = NBAT; nb > 0; nb--) {
+    for (i = maxi; r[i+nb-1] != '\0'; i++)
+      if (r[maxi] < r[i])
+        maxi = i;
+    jolts[NBAT - nb] = r[maxi];
+    maxi++;
+  }
 
   return atoll(jolts);
 }
