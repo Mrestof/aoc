@@ -48,7 +48,7 @@ if [[ ! -f "$fin" ]]; then
   aocd "$year" "$day" > ../../inputs/${year}-${day}.txt
 fi
 
-if [[ ! -z "$finex" && -f "$finex" ]]; then
+if [[ ! -z "$finex" && ! -f "$finex" ]]; then
   if [[ ! $(command -v aocd) ]]; then
     venv_name="${1:-.venv}"
     closest_venv_loc=$(find-up $venv_name)
