@@ -32,13 +32,21 @@ int part1() {
 }
 
 int part2() {
-  int cur_rot = 50;
+  int cur_rot = 50, new_rot = 0, direction = 1;
   int zero_counter = 0;
 
   for (int i = 0; i < nlines; i++) {
-    cur_rot = (cur_rot + get_rot(lines[i])) % 100;
-    if (cur_rot == 0)
-      zero_counter++;
+    new_rot = get_rot(lines[i]);
+    direction = new_rot / abs(new_rot);
+    for (int j = 0; j < abs(new_rot); j++) {
+      cur_rot += direction;
+      if (cur_rot == 100)
+        cur_rot = 0;
+      if (cur_rot == -1)
+        cur_rot = 99;
+      if (cur_rot == 0)
+        zero_counter++;
+    }
   }
 
   return zero_counter;
