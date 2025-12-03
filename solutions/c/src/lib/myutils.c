@@ -83,7 +83,8 @@ int readall(char *input, char *lines[], int lim, int line_lim) {
       line_p = &input[i+1];
     }
   }
-  lines[nline++] = line_p;
+  if (input[i-1] != '\0')
+    lines[nline++] = line_p;
 
   return nline;
 }
