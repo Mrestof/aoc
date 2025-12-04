@@ -11,6 +11,7 @@ char input[MAXINPUT];
 char *lines[MAXLINES];
 int nlines;
 
+#define NRP '.' // empty place
 #define RP '@' // roll of paper
 #define MAX_ADJ_RPS 3
 
@@ -34,20 +35,27 @@ bool is_rp_accessible(int nl, int nc) {
   return true;
 }
 
-long long part1() {
+long long remove_rps(bool dry) {
   int nl, nc;
   int nrp = 0;
-  for (nl = 0; nl < nlines; nl++) {
-    for (nc = 0; lines[nl][nc] != '\0'; nc++) {
-      if (lines[nl][nc] == RP && is_rp_accessible(nl, nc))
+  for (nl = 0; nl < nlines; nl++)
+    for (nc = 0; lines[nl][nc] != '\0'; nc++)
+      if (lines[nl][nc] == RP && is_rp_accessible(nl, nc)) {
+        if (!dry) lines[nl][nc] = NRP;
         nrp++;
-    }
-  }
+      }
   return nrp;
 }
 
+long long part1() {
+  return remove_rps(true);
+}
+
 long long part2() {
-  return 0;
+  int tnrp = 0, nrp;
+  while ((nrp = remove_rps(false)) > 0)
+    tnrp += nrp;
+  return tnrp;
 }
 
 int main() {
