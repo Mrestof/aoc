@@ -93,7 +93,7 @@ printf '=== compile ===\n'
 set -e
 gcc -c -g src/lib/myutils.c -o .bin/lib/myutils.o
 ar rcs .bin/lib/libmyutils.a .bin/lib/myutils.o
-gcc -O0 -g $gcc_warnings $filename -o $bin_name -L.bin/lib -Isrc/lib -lmyutils -lm
+gcc -g $gcc_warnings $filename -o $bin_name -L.bin/lib -Isrc/lib -lmyutils -lm
 set +e
 
 if [[ ! -z "$finex" ]]; then
