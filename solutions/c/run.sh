@@ -86,7 +86,7 @@ run() {
 gcc_warnings=\
 '-Wall -Wextra -Wpedantic -Wreturn-type -Wdouble-promotion -Wfloat-conversion'
 gcc_debug_options=\
-'-g'
+'-g -ftrivial-auto-var-init=zero'
 gcc_includes=\
 '-L.bin/lib -Isrc/lib -lmyutils -lm'
 
