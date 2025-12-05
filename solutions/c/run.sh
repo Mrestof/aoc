@@ -85,15 +85,19 @@ run() {
 
 gcc_warnings=\
 '-Wall -Wextra -Wpedantic -Wreturn-type -Wdouble-promotion -Wfloat-conversion'
+gcc_debug_options=\
+'-g'
+gcc_includes=\
+'-L.bin/lib -Isrc/lib -lmyutils -lm'
 
 printf '##############################\n'
 printf '%s\n' "$filename"
 printf '##############################\n'
 printf '=== compile ===\n'
 set -e
-gcc -c -g src/lib/myutils.c -o .bin/lib/myutils.o
+gcc $gcc_debug_options -c src/lib/myutils.c -o .bin/lib/myutils.o
 ar rcs .bin/lib/libmyutils.a .bin/lib/myutils.o
-gcc -g $gcc_warnings $filename -o $bin_name -L.bin/lib -Isrc/lib -lmyutils -lm
+gcc $gcc_debug_options $gcc_warnings -o $bin_name $filename $gcc_includes
 set +e
 
 if [[ ! -z "$finex" ]]; then
