@@ -3,6 +3,8 @@
 
 #include <stdbool.h>
 
+typedef long long ll;
+
 bool is_prime(long a);
 
 void swap(int *a, int *b);
