@@ -17,7 +17,7 @@ int nlines;
 
 // read numbers from `lines` into `nums`, return the amount of columns and rows
 // written to `nums` via `nc` and `nr` respectively
-void readnums(int nums[MAXROWS][MAXCOLS], int *nc, int *nr) {
+void readnums_p1(int nums[MAXROWS][MAXCOLS], int *nc, int *nr) {
   char c;
   int row, col;
   int num;
@@ -43,6 +43,39 @@ void readnums(int nums[MAXROWS][MAXCOLS], int *nc, int *nr) {
   }
 
   ++*nc;
+}
+
+// Read numbers from `lines` into `nums`, return the amount of columns and rows
+// written to `nums` via `nc` and `nr` respectively. Make sure you initialize
+// nums with zeros before passing.
+void readnums_p2(int nums[MAXROWS][MAXCOLS], int *nc, int *nr) {
+  bool empty;
+  char c;
+  int row, col, numrow;
+
+  *nr = nlines - 1;
+  *nc = 0;
+
+  numrow = 0;
+  for (col = 0; lines[0][col] != '\0'; col++) {
+    empty = true;
+    for (row = 0; row < *nr; row++) {
+      c = lines[row][col];
+      if (isdigit(c)) {
+        empty = false;
+        nums[numrow][*nc] *= 10;
+        nums[numrow][*nc] += c - '0';
+      }
+    }
+    if (empty) {
+      numrow = 0;
+      ++*nc;
+    } else {
+      numrow++;
+    }
+  }
+  if (!empty)
+    ++*nc;
 }
 
 void readops(char ops[MAXCOLS], int nr) {
@@ -73,7 +106,8 @@ void makeops(
         results[col] += nums[row][col];
         break;
       case '*':
-        results[col] *= nums[row][col];
+        if (nums[row][col] > 1)
+          results[col] *= nums[row][col];
         break;
       }
     }
@@ -82,12 +116,12 @@ void makeops(
 
 ll part1() {
   int i;
-  int nums[MAXROWS][MAXCOLS], nc, nr;
+  int nums[MAXROWS][MAXCOLS] = {0}, nc, nr;
   ll results[MAXCOLS];
   char ops[MAXCOLS];
   ll sum;
 
-  readnums(nums, &nc, &nr);
+  readnums_p1(nums, &nc, &nr);
   readops(ops, nr);
   makeops(results, nums, ops, nc, nr);
 
@@ -99,12 +133,28 @@ ll part1() {
 }
 
 ll part2() {
-  return 0;
+  int i;
+  int nums[MAXROWS][MAXCOLS] = {0}, nc, nr;
+  ll results[MAXCOLS];
+  char ops[MAXCOLS];
+  ll sum;
+
+  readnums_p2(nums, &nc, &nr);
+  readops(ops, nr);
+  makeops(results, nums, ops, nc, nr);
+
+  sum = 0;
+  for (i = 0; i < nc; i++) {
+    sum += results[i];
+    printf("%lld\n", sum);
+  }
+
+  return sum;
 }
 
 int main() {
   nlines = readall(input, lines, MAXINPUT, MAXLINE);
-  printf("part1: %lld\n", part1());
+  //printf("part1: %lld\n", part1());
   printf("part2: %lld\n", part2());
   return 0;
 }
