@@ -146,7 +146,6 @@ ll part2() {
   sum = 0;
   for (i = 0; i < nc; i++) {
     sum += results[i];
-    printf("%lld\n", sum);
   }
 
   return sum;
@@ -154,7 +153,7 @@ ll part2() {
 
 int main() {
   nlines = readall(input, lines, MAXINPUT, MAXLINE);
-  //printf("part1: %lld\n", part1());
+  printf("part1: %lld\n", part1());
   printf("part2: %lld\n", part2());
   return 0;
 }
