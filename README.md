@@ -8,7 +8,7 @@ Advent of Code.
 If you want to run some of the solutions yourself, follow the appropriate
 section below.
 
-### 2025 C [6/12]
+### 2025 C [7/12]
 
 1. Have the required tools installed
     - aocd (advent-of-code-data 2.0.1)
