@@ -77,7 +77,6 @@ ll count_timelines(splitter *s) {
 
 ll part2() {
   int nl, nc;
-  int bn = 0;
   splitter *s;
   splitter *root = NULL;
   splitter *splitters[MAXLINES][MAXLINE] = {NULL};
