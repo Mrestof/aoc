@@ -8,11 +8,11 @@
 #define MAXLINES 200
 
 #define MAXINPUT (MAXLINE*MAXLINES)
-char input[MAXINPUT];
-char *lines[MAXLINES];
-int nlines;
+static char input[MAXINPUT];
+static char *lines[MAXLINES];
+static int nlines;
 
-ll part1() {
+static ll part1() {
   char c;
   int nl, nc;
   int bn = 0;
@@ -39,7 +39,7 @@ typedef struct splitter {
   struct splitter *left, *right;
 } splitter;
 
-splitter *new_splitter(int timelines) {
+static splitter *new_splitter(int timelines) {
   splitter *s = malloc(sizeof *s);
   if (!s) exit(1);
   s->timelines = timelines;
@@ -47,7 +47,7 @@ splitter *new_splitter(int timelines) {
   return s;
 }
 
-splitter *find_below(int nl, int nc, splitter *splitters[MAXLINES][MAXLINE]) {
+static splitter *find_below(int nl, int nc, splitter *splitters[MAXLINES][MAXLINE]) {
   while (nl < nlines)
     if (lines[nl++][nc] == '^') {
       if (splitters[nl][nc] == NULL)
@@ -58,7 +58,7 @@ splitter *find_below(int nl, int nc, splitter *splitters[MAXLINES][MAXLINE]) {
   return NULL;
 }
 
-ll count_timelines(splitter *s) {
+static ll count_timelines(splitter *s) {
   if (s->timelines != 0)
     return s->timelines;
 
@@ -75,7 +75,7 @@ ll count_timelines(splitter *s) {
   return s->timelines;
 }
 
-ll part2() {
+static ll part2() {
   int nl, nc;
   splitter *s;
   splitter *root = NULL;
