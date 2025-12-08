@@ -7,6 +7,12 @@ typedef long long ll;
 
 bool is_prime(long a);
 
+typedef struct {
+  double x, y, z;
+} Point;
+
+double distance(Point *p1, Point *p2);
+
 void swap(int *a, int *b);
 void reverse(char s[]);
 
