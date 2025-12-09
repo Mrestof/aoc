@@ -46,6 +46,7 @@ static int pair_cmp(const void *a, const void *b) {
 static void get_boxes() {
   int i;
   JunctionBox *b;
+  njboxes = 0;
   for (i = 0; i < nlines; i++) {
     b = &jboxes[i];
     sscanf(lines[i], "%lf,%lf,%lf", &b->pos.x, &b->pos.y, &b->pos.z);
@@ -56,6 +57,7 @@ static void get_boxes() {
 static void get_pairs() {
   int i, j;
   Pair *pair;
+  npairs = 0;
   for (i = 0; i < njboxes; i++) {
     for (j = i+1; j < njboxes; j++) {
       pair = &pairs[npairs++];
@@ -84,11 +86,13 @@ static void add_adj(JunctionBox *target, JunctionBox *new) {
   target->adj[i] = new;
 }
 
-static void connect_pair(Pair p) {
+static bool connect_pair(Pair p) {
   if (!in_circuit(NULL, p.b1, p.b2)) {
     add_adj(p.b1, p.b2);
     add_adj(p.b2, p.b1);
+    return true;
   }
+  return false;
 }
 
 static size_t get_jbox_idx(JunctionBox *addr) {
@@ -145,7 +149,19 @@ static ll part1() {
 }
 
 static ll part2() {
-  return 0;
+  int i;
+  Pair *last_pair;
+
+  get_boxes();
+  get_pairs();
+
+  qsort(pairs, npairs, sizeof(Pair), pair_cmp);
+
+  for (i = 0; i < npairs; i++)
+    if (connect_pair(pairs[i]))
+      last_pair = &pairs[i];
+
+  return (ll)(last_pair->b1->pos.x * last_pair->b2->pos.x);
 }
 
 int main() {
