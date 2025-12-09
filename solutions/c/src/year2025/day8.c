@@ -68,7 +68,7 @@ static void get_pairs() {
 
 static bool in_circuit(JunctionBox *prev, JunctionBox *b1, JunctionBox *b2) {
   for (int i = 0; b1->adj[i] != NULL; i++) {
-    if (b1->adj[i] == prev)
+    if (prev != NULL && b1->adj[i] == prev)
       continue;
     if (b1->adj[i] == b2)
       return true;
@@ -104,7 +104,7 @@ static int count_boxes_in_circuit(
   int sum = 1;
   seen[get_jbox_idx(b)] = true;
   for (int i = 0; b->adj[i] != NULL; i++) {
-    if (b->adj[i] == prev)
+    if (prev != NULL && b->adj[i] == prev)
       continue;
     sum += count_boxes_in_circuit(b, b->adj[i], seen);
   }
@@ -116,7 +116,7 @@ static int eval_circuits() {
   int res;
   bool seen[MAXLINES] = {0};
   int ciruit_length[MAXLINES];
-  for (i = 0; i < MAXLINES; i++) {
+  for (i = 0; i < njboxes; i++) {
     if (seen[i]) continue;
     ciruit_length[ncl++] = count_boxes_in_circuit(NULL, &jboxes[i], seen);
   }
@@ -129,13 +129,16 @@ static int eval_circuits() {
 
 static ll part1() {
   int i;
+  int pairs_to_connect = 0;
 
   get_boxes();
   get_pairs();
 
-  qsort(pairs, nlines-1, sizeof(Pair), pair_cmp);
+  qsort(pairs, npairs, sizeof(Pair), pair_cmp);
 
-  for (i = 0; i < npairs; i++)
+  // separate limit for test and actual data as per the puzzle description
+  pairs_to_connect = npairs < 1000 ? 10 : 1000;
+  for (i = 0; i < pairs_to_connect; i++)
     connect_pair(pairs[i]);
 
   return eval_circuits();
