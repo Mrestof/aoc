@@ -91,6 +91,8 @@ gcc_includes=\
 '-L.bin/lib -Isrc/lib -lmyutils -lm'
 gcc_optimizations=\
 '-O2'
+gcc_sanitizations=\
+'-fsanitize=undefined'
 
 printf '##############################\n'
 printf '%s\n' "$filename"
@@ -101,6 +103,7 @@ gcc $gcc_debug_options -c src/lib/myutils.c -o .bin/lib/myutils.o
 ar rcs .bin/lib/libmyutils.a .bin/lib/myutils.o
 gcc \
   $gcc_optimizations \
+  $gcc_sanitizations \
   $gcc_debug_options \
   $gcc_warnings \
   -o $bin_name $filename \
