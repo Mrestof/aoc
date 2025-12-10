@@ -14,6 +14,7 @@ typedef struct {
 double distance(Point *p1, Point *p2);
 
 void swap(int *a, int *b);
+void swapb(bool *a, bool *b);
 void reverse(char s[]);
 
 // find string `s` in array of strings `in` and return its index or -1 if it's

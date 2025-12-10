@@ -26,6 +26,12 @@ void swap(int *a, int *b) {
   *b = tmp;
 }
 
+void swapb(bool *a, bool *b) {
+  bool tmp = *a;
+  *a = *b;
+  *b = tmp;
+}
+
 void reverse(char s[]) {
   int i, j;
   char c;
